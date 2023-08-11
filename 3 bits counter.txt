@@ -1,0 +1,29 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity UpCounter is
+    Port ( clk : in STD_LOGIC;
+           reset : in STD_LOGIC;
+           count : out STD_LOGIC_VECTOR(2 downto 0));
+end UpCounter;
+
+architecture Behavioral of UpCounter is
+    signal counter_val : STD_LOGIC_VECTOR(2 downto 0) := "000";
+begin
+    process(clk, reset)
+    begin
+        if reset = '1' then
+            counter_val <= "000"; -- Reset counter to 0
+        elsif rising_edge(clk) then
+            if counter_val = "111" then
+                counter_val <= "000"; -- Wrap around
+            else
+                counter_val <= counter_val + 1; -- Increment counter
+            end if;
+        end if;
+    end process;
+
+    count <= counter_val;
+end Behavioral;
