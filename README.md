@@ -14,3 +14,8 @@ with a clock signal (clk) that synchronizes its actions, and a reset signal (res
 The count itself is represented by a sequence of three bits, which means it can represent numbers from 0 to 7. The counter follows a clock's 
 rhythm and increases by one each time the clock's rising edge occurs. When it reaches the value 7, it wraps around back to 0 to continue counting. 
 If the reset signal is activated, the counter is immediately reset to 0, ready to start counting again from scratch.
+
+3_ 4-1 Multiplexer
+Think of this as a switcher for four different lights. You can choose which light you want to turn on using two buttons (Select). 
+The chosen light's status shows up on a screen (Output). Pressing the buttons changes the active light. For example, pressing "00" turns 
+on the first light, and so on. It's like a basic version of how we make choices using switches.
