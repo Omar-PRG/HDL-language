@@ -1,0 +1,37 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity Arithmetic_Operations is
+    Port ( A : in STD_LOGIC_VECTOR(7 downto 0);
+           B : in STD_LOGIC_VECTOR(7 downto 0);
+           Operation : in STD_LOGIC_VECTOR(1 downto 0);
+           Result : out STD_LOGIC_VECTOR(7 downto 0));
+end Arithmetic_Operations;
+
+architecture Behavioral of Arithmetic_Operations is
+    signal Temp : STD_LOGIC_VECTOR(7 downto 0);
+begin
+    process(A, B, Operation)
+    begin
+        case Operation is
+            when "00" => -- Addition
+                Temp <= A + B;
+            when "01" => -- Subtraction
+                Temp <= A - B;
+            when "10" => -- Division
+                if B /= "00000000" then
+                    Temp <= A / B;
+                else
+                    Temp <= (others => 'X'); -- Handle division by zero
+                end if;
+            when "11" => -- Multiplication
+                Temp <= A * B;
+            when others =>
+                Temp <= (others => 'X');
+        end case;
+    end process;
+
+    Result <= Temp;
+end Behavioral;
